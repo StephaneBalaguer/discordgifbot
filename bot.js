@@ -6,6 +6,7 @@ const glob = require('glob');
 var cron = require("node-schedule");
 const path = require('path');
 const fs = require('fs');
+const { measureMemory } = require('vm');
 
 let knownGifs = [];
 
@@ -57,6 +58,7 @@ client.on('message', function (message) {
     }
 
     if (msg.toLowerCase() == ":refreshgifs") {
+        message.channel.send('refreshing gif list...')
         changeNames();
     }
 
