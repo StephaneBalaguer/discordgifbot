@@ -18,12 +18,13 @@ const directoryPath = path.join(__dirname, 'img');
 
 function registerList() {
     fs.readdir(directoryPath, function (err, files) {
+        knownGifs = []
+
         if (err) {
             return console.log('Unable to scan directory: ' + err);
         }
         files.forEach(function (file) {
-            if (file.split('.')[file.split('.').length-1] == "gif") {
-                knownGifs =[]
+            if (file.split('.')[file.split('.').length - 1] == "gif") {
                 file = file.split('.').slice(0, -1).join('.');
                 knownGifs.push(file);
             }
