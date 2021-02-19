@@ -68,7 +68,7 @@ client.on('message', function (message) {
         var msg = msg.substring(1, msg.length - 1);
         knownGifs.forEach(function (gif) {
             if (gif.toLocaleLowerCase() == msg.toLocaleLowerCase()) {
-                message.channel.send({ files: ["./img/" + msg + ".gif"] })
+                message.channel.send("**["+message.author.username +"] says : \r\n**", { files: ["./img/" + msg + ".gif"] })
                 message.delete();
             }
         })
