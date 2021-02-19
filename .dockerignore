@@ -1,4 +1,8 @@
 node_modules
 npm-debug.log
 .idea
-**/*.db
+**/*.jpg
+**/*.gif
+**/*.avi
+**/*.mp3
+**/*.mp4
