@@ -56,6 +56,10 @@ client.on('message', function (message) {
         message.channel.send(existing);
     }
 
+    if (msg.toLowerCase() == ":refreshgifs") {
+        changeNames();
+    }
+
     if (msg.startsWith(":") && msg.endsWith(":")) {
         var msg = msg.substring(1, msg.length - 1);
         knownGifs.forEach(function (gif) {
