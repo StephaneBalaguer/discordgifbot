@@ -23,6 +23,7 @@ function registerList() {
         }
         files.forEach(function (file) {
             if (file.split('.')[file.split('.').length-1] == "gif") {
+                knownGifs =[]
                 file = file.split('.').slice(0, -1).join('.');
                 knownGifs.push(file);
             }
