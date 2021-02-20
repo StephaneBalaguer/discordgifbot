@@ -1,7 +1,6 @@
 require('dotenv').config();
 const discord = require('discord.js');
 const client = new discord.Client();
-client.login(process.env.BOT_TOKEN);
 const glob = require('glob');
 var cron = require("node-schedule");
 const path = require('path');
@@ -88,17 +87,36 @@ function registerList() {
 
 
 function changeNames() {
-    glob(__dirname + "/**/*.*", function (err, files) {
-        var processed = 0;
+    glob(__dirname + "/img/*.*", function (err, files) {
+         var processed = 0;
         files.forEach(function (file) {
             var dir = path.dirname(file);
             var filename = path.basename(file);
             fs.renameSync(file, dir + "/" + filename.toLowerCase());
             processed++;
         });
-        registerList();
     });
+    glob(__dirname + "/video/*.*", function (err, files) {
+        var processed = 0;
+       files.forEach(function (file) {
+           var dir = path.dirname(file);
+           var filename = path.basename(file);
+           fs.renameSync(file, dir + "/" + filename.toLowerCase());
+           processed++;
+       });
+   });
+   glob(__dirname + "/audio/*.*", function (err, files) {
+    var processed = 0;
+   files.forEach(function (file) {
+       var dir = path.dirname(file);
+       var filename = path.basename(file);
+       fs.renameSync(file, dir + "/" + filename.toLowerCase());
+       processed++;
+   });
+});
+registerList();
 }
+
 client.on('ready', () => {
     console.log(`${client.user.tag} has logged in`);
 });
@@ -108,19 +126,19 @@ client.on('message', function (message) {
     var msg = message.content;
     if (msg.toLowerCase() == "!list") {
        //img gif
-        let existing = "Gifs possible : ";
+        let existing = "Gifs disponible : ";
         knownGifs.forEach(function (gif) {
             existing += "\r\n" + ":" + gif + ":";
         })
 
-        existing += "\r\n\r\nImages possible : ";
+        existing += "\r\n\r\nImages disponible : ";
         knownImagesJpg.forEach(function (jpg) {
             existing += "\r\n" + ":" + jpg + ":";
         })
 
 
         //VIDEO
-        existing += "\r\n\r\nVideos possible : ";
+        existing += "\r\n\r\nVideos disponible : ";
         knownVideosMp4.forEach(function (mp4) {
             existing += "\r\n" + ":" + mp4 + ":";
         })
@@ -131,17 +149,19 @@ client.on('message', function (message) {
 
 
         // audio
-        existing += "\r\n\r\nMp3 possible : ";
-        knownSoundMp3.forEach(function (MP3) {
-            existing += "\r\n" + ":" + MP3 + ":";
+        existing += "\r\n\r\nMp3 disponible : ";
+        knownSoundMp3.forEach(function (mp3) {
+            existing += "\r\n" + ":" + mp3 + ":";
         })
         message.channel.send(existing, {
             split: true});
+        message.delete();
     }
 
     if (msg.toLowerCase() == "!refresh") {
         message.channel.send('refreshing list...')
         changeNames();
+        message.delete();
     }
 
     if (msg.startsWith(":") && msg.endsWith(":")) {
@@ -183,3 +203,5 @@ client.on('message', function (message) {
 });
 
 changeNames();
+
+client.login(process.env.BOT_TOKEN);
