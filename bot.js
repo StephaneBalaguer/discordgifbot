@@ -165,15 +165,20 @@ client.on('message', function (message) {
     }
 
     if (msg.startsWith(":") && msg.endsWith(":")) {
+
+        let shouldMessageBeDeleted = false;
         var msg = msg.substring(1, msg.length - 1);
         //img gif  jpg
         knownGifs.forEach(function (gif) {
             if (gif.toLocaleLowerCase() == msg.toLocaleLowerCase()) {
+                shouldMessageBeDeleted = true;
                 message.channel.send("**["+message.author.username +"] says : \r\n**", { files: ["./img/" + msg + ".gif"] })
             }
         })
         knownImagesJpg.forEach(function (jpg) {
             if (jpg.toLocaleLowerCase() == msg.toLocaleLowerCase()) {
+                shouldMessageBeDeleted = true;
+
                 message.channel.send("**["+message.author.username +"] says : \r\n**", { files: ["./img/" + msg + ".jpg"] })
             }
         })
@@ -181,12 +186,16 @@ client.on('message', function (message) {
         //video mp4 avi
         knownVideosMp4.forEach(function (mp4) {
             if (mp4.toLocaleLowerCase() == msg.toLocaleLowerCase()) {
+                shouldMessageBeDeleted = true;
+
                 message.channel.send("**["+message.author.username +"] says : \r\n**", { files: ["./video/" + msg + ".mp4"] })
             }
         })
 
         knownVideosAvi.forEach(function (avi) {
             if (avi.toLocaleLowerCase() == msg.toLocaleLowerCase()) {
+                shouldMessageBeDeleted = true;
+
                 message.channel.send("**["+message.author.username +"] says : \r\n**", { files: ["./video/" + msg + ".avi"] })
             }
         })
@@ -195,10 +204,14 @@ client.on('message', function (message) {
 
         knownSoundMp3.forEach(function (mp3) {
             if (mp3.toLocaleLowerCase() == msg.toLocaleLowerCase()) {
+                shouldMessageBeDeleted = true;
+
                 message.channel.send("**["+message.author.username +"] says : \r\n**", { files: ["./audio/" + msg + ".mp3"] })
             }
         })
-        message.delete();
+        if(shouldMessageBeDeleted){
+            message.delete();
+        }
     }
 });
 
