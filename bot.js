@@ -9,6 +9,7 @@ const { measureMemory } = require('vm');
 
 let knownGifs = [];
 let knownImagesJpg = [];
+let knownImagesPng = [];
 let knownVideosAvi = [];
 let knownVideosMp4 = [];
 let knownSoundMp3 = [];
@@ -25,6 +26,8 @@ function registerList() {
     fs.readdir(imgDirectoryPath, function (err, files) {
         knownGifs = []
         knownImagesJpg = []
+        knownImagesPng = [];
+
 
         if (err) {
             return console.log('Unable to scan directory: ' + err);
@@ -41,6 +44,13 @@ function registerList() {
             if (file.split('.')[file.split('.').length - 1] == "jpg") {
                 file = file.split('.').slice(0, -1).join('.');
                 knownImagesJpg.push(file);
+            }
+        });
+        
+        files.forEach(function (file) {
+            if (file.split('.')[file.split('.').length - 1] == "png") {
+                file = file.split('.').slice(0, -1).join('.');
+                knownImagesPng.push(file);
             }
         });
 
@@ -136,7 +146,9 @@ client.on('message', function (message) {
             existing += "\r\n" + ":" + jpg + ":";
         })
 
-
+        knownImagesPng.forEach(function (png) {
+            existing += "\r\n" + ":" + png + ":";
+        })
         //VIDEO
         existing += "\r\n\r\nVideos disponible : ";
         knownVideosMp4.forEach(function (mp4) {
@@ -182,6 +194,13 @@ client.on('message', function (message) {
                 message.channel.send("**["+message.author.username +"] says : \r\n**", { files: ["./img/" + msg + ".jpg"] })
             }
         })
+        knownImagesPng.forEach(function (png) {
+            if (png.toLocaleLowerCase() == msg.toLocaleLowerCase()) {
+                shouldMessageBeDeleted = true;
+
+                message.channel.send("**["+message.author.username +"] says : \r\n**", { files: ["./img/" + msg + ".png"] })
+            }
+        })
 
         //video mp4 avi
         knownVideosMp4.forEach(function (mp4) {
@@ -213,6 +232,52 @@ client.on('message', function (message) {
             message.delete();
         }
     }
+    if (msg.toLowerCase().includes("envie de clubber") 
+    ||  msg.toLowerCase().includes("envie de cluber")
+    ||  msg.toLowerCase().includes("envie de clube")
+    ||  msg.toLowerCase().includes("envie de clubere")
+    ||  msg.toLowerCase().includes("envie de clubé")
+    ||  msg.toLowerCase().includes("envie de clubè")
+
+    ||  msg.toLowerCase().includes("envi de clubber")
+    ||  msg.toLowerCase().includes("envi de cluber")
+    ||  msg.toLowerCase().includes("envi de clube")
+    ||  msg.toLowerCase().includes("envi de clubé")
+    ||  msg.toLowerCase().includes("envi de clubè")
+    ||  msg.toLowerCase().includes("envi de clubere")
+
+    ||  msg.toLowerCase().includes("anvi de clubber")
+    ||  msg.toLowerCase().includes("anvi de cluber")
+    ||  msg.toLowerCase().includes("anvi de clube")
+    ||  msg.toLowerCase().includes("anvi de clubé")
+    ||  msg.toLowerCase().includes("anvi de clubè")
+    ||  msg.toLowerCase().includes("anvi de clubere")
+    
+    ||  msg.toLowerCase().includes("envue de clubber") 
+    ||  msg.toLowerCase().includes("envue de cluber")
+    ||  msg.toLowerCase().includes("envue de clube")
+    ||  msg.toLowerCase().includes("envue de clubere")
+    ||  msg.toLowerCase().includes("envue de clubé")
+    ||  msg.toLowerCase().includes("envue de clubè")
+
+    ||  msg.toLowerCase().includes("envu de clubber")
+    ||  msg.toLowerCase().includes("envu de cluber")
+    ||  msg.toLowerCase().includes("envu de clube")
+    ||  msg.toLowerCase().includes("envu de clubé")
+    ||  msg.toLowerCase().includes("envu de clubè")
+    ||  msg.toLowerCase().includes("envu de clubere")
+    
+    ||  msg.toLowerCase().includes("anvu de clubber")
+    ||  msg.toLowerCase().includes("anvu de cluber")
+    ||  msg.toLowerCase().includes("anvu de clube")
+    ||  msg.toLowerCase().includes("anvu de clubé")
+    ||  msg.toLowerCase().includes("anvu de clubè")
+    ||  msg.toLowerCase().includes("anvu de clubere")
+    ) {
+        message.channel.send('ARRETE DE DIRE CA BORDEL')
+    }
+
+
 });
 
 changeNames();
