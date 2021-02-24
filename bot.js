@@ -232,6 +232,7 @@ client.on('message', function (message) {
             message.delete();
         }
     }
+
     if (msg.toLowerCase().includes("envie de clubber") 
     ||  msg.toLowerCase().includes("envie de cluber")
     ||  msg.toLowerCase().includes("envie de clube")
@@ -266,13 +267,33 @@ client.on('message', function (message) {
     ||  msg.toLowerCase().includes("envu de clubé")
     ||  msg.toLowerCase().includes("envu de clubè")
     ||  msg.toLowerCase().includes("envu de clubere")
-    
+
     ||  msg.toLowerCase().includes("anvu de clubber")
     ||  msg.toLowerCase().includes("anvu de cluber")
     ||  msg.toLowerCase().includes("anvu de clube")
     ||  msg.toLowerCase().includes("anvu de clubé")
     ||  msg.toLowerCase().includes("anvu de clubè")
     ||  msg.toLowerCase().includes("anvu de clubere")
+
+    
+    ||  msg.toLowerCase().includes("ca degoute")
+    ||  msg.toLowerCase().includes("ca dégoute")
+    ||  msg.toLowerCase().includes("ca deggoute")
+    ||  msg.toLowerCase().includes("ca deggoutte")
+    ||  msg.toLowerCase().includes("ca degoutte")
+    
+    ||  msg.toLowerCase().includes("sa degoute")
+    ||  msg.toLowerCase().includes("sa dégoute")
+    ||  msg.toLowerCase().includes("sa deggoute")
+    ||  msg.toLowerCase().includes("sa deggoutte")
+    ||  msg.toLowerCase().includes("sa degoutte")   
+
+    ||  msg.toLowerCase().includes("tu degoute")
+    ||  msg.toLowerCase().includes("tu dégoute")
+    ||  msg.toLowerCase().includes("tu deggoute")
+    ||  msg.toLowerCase().includes("tu deggoutte")
+    ||  msg.toLowerCase().includes("tu degoutte")
+
     ) {
         message.channel.send('ARRETE DE DIRE CA BORDEL')
     }
