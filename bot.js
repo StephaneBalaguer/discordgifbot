@@ -275,12 +275,17 @@ client.on('message', function (message) {
     ||  msg.toLowerCase().includes("anvu de clubè")
     ||  msg.toLowerCase().includes("anvu de clubere")
 
-    
+
     ||  msg.toLowerCase().includes("ca degoute")
     ||  msg.toLowerCase().includes("ca dégoute")
+    ||  msg.toLowerCase().includes("ça degoute")
+    ||  msg.toLowerCase().includes("ça dégoute")
     ||  msg.toLowerCase().includes("ca deggoute")
     ||  msg.toLowerCase().includes("ca deggoutte")
     ||  msg.toLowerCase().includes("ca degoutte")
+    ||  msg.toLowerCase().includes("ça deggoute")
+    ||  msg.toLowerCase().includes("ça deggoutte")
+    ||  msg.toLowerCase().includes("ça degoutte")
     
     ||  msg.toLowerCase().includes("sa degoute")
     ||  msg.toLowerCase().includes("sa dégoute")
