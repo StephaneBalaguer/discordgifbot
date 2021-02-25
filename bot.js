@@ -299,8 +299,13 @@ client.on('message', function (message) {
     ||  msg.toLowerCase().includes("tu deggoutte")
     ||  msg.toLowerCase().includes("tu degoutte")
 
+    ||  msg.toLowerCase().includes("en vide club et")
+    ||  msg.toLowerCase().includes("en vie, deux cleux bés")
+    ||  msg.toLowerCase().includes("envi de cleuber")
+
     ) {
-        message.channel.send('ARRETE DE DIRE CA BORDEL')
+        message.channel.send()
+        message.channel.send('ARRETE DE DIRE CA BORDEL', { files: ["./img/enviedeclubber.jpg"] })
     }
 
 
