@@ -14,6 +14,15 @@ let knownVideosAvi = [];
 let knownVideosMp4 = [];
 let knownSoundMp3 = [];
 
+let envieDeClubberAnswers = ["Ouais grave de t'accompagne !"
+    , "Allez on se retrouve a l'interieur !"
+    , "Ouais gros !"
+    , "Vas y chaud !"
+    , "T'as vraiment envie d'aller clubber avec un mec comme ca ?!"
+    , "LET'S GO"
+
+];
+
 cron.scheduleJob("* 1 * * * *", function () {
     changeNames();
 });
@@ -46,7 +55,7 @@ function registerList() {
                 knownImagesJpg.push(file);
             }
         });
-        
+
         files.forEach(function (file) {
             if (file.split('.')[file.split('.').length - 1] == "png") {
                 file = file.split('.').slice(0, -1).join('.');
@@ -98,7 +107,7 @@ function registerList() {
 
 function changeNames() {
     glob(__dirname + "/img/*.*", function (err, files) {
-         var processed = 0;
+        var processed = 0;
         files.forEach(function (file) {
             var dir = path.dirname(file);
             var filename = path.basename(file);
@@ -108,23 +117,23 @@ function changeNames() {
     });
     glob(__dirname + "/video/*.*", function (err, files) {
         var processed = 0;
-       files.forEach(function (file) {
-           var dir = path.dirname(file);
-           var filename = path.basename(file);
-           fs.renameSync(file, dir + "/" + filename.toLowerCase());
-           processed++;
-       });
-   });
-   glob(__dirname + "/audio/*.*", function (err, files) {
-    var processed = 0;
-   files.forEach(function (file) {
-       var dir = path.dirname(file);
-       var filename = path.basename(file);
-       fs.renameSync(file, dir + "/" + filename.toLowerCase());
-       processed++;
-   });
-});
-registerList();
+        files.forEach(function (file) {
+            var dir = path.dirname(file);
+            var filename = path.basename(file);
+            fs.renameSync(file, dir + "/" + filename.toLowerCase());
+            processed++;
+        });
+    });
+    glob(__dirname + "/audio/*.*", function (err, files) {
+        var processed = 0;
+        files.forEach(function (file) {
+            var dir = path.dirname(file);
+            var filename = path.basename(file);
+            fs.renameSync(file, dir + "/" + filename.toLowerCase());
+            processed++;
+        });
+    });
+    registerList();
 }
 
 client.on('ready', () => {
@@ -135,7 +144,7 @@ client.on('message', function (message) {
     if (message.author.bot) return;
     var msg = message.content;
     if (msg.toLowerCase() == "!list") {
-       //img gif
+        //img gif
         let existing = "Gifs disponible : ";
         knownGifs.forEach(function (gif) {
             existing += "\r\n" + ":" + gif + ":";
@@ -166,7 +175,8 @@ client.on('message', function (message) {
             existing += "\r\n" + ":" + mp3 + ":";
         })
         message.channel.send(existing, {
-            split: true});
+            split: true
+        });
         message.delete();
     }
 
@@ -184,21 +194,21 @@ client.on('message', function (message) {
         knownGifs.forEach(function (gif) {
             if (gif.toLocaleLowerCase() == msg.toLocaleLowerCase()) {
                 shouldMessageBeDeleted = true;
-                message.channel.send("**["+message.author.username +"] says : \r\n**", { files: ["./img/" + msg + ".gif"] })
+                message.channel.send("**[" + message.author.username + "] says : \r\n**", { files: ["./img/" + msg + ".gif"] })
             }
         })
         knownImagesJpg.forEach(function (jpg) {
             if (jpg.toLocaleLowerCase() == msg.toLocaleLowerCase()) {
                 shouldMessageBeDeleted = true;
 
-                message.channel.send("**["+message.author.username +"] says : \r\n**", { files: ["./img/" + msg + ".jpg"] })
+                message.channel.send("**[" + message.author.username + "] says : \r\n**", { files: ["./img/" + msg + ".jpg"] })
             }
         })
         knownImagesPng.forEach(function (png) {
             if (png.toLocaleLowerCase() == msg.toLocaleLowerCase()) {
                 shouldMessageBeDeleted = true;
 
-                message.channel.send("**["+message.author.username +"] says : \r\n**", { files: ["./img/" + msg + ".png"] })
+                message.channel.send("**[" + message.author.username + "] says : \r\n**", { files: ["./img/" + msg + ".png"] })
             }
         })
 
@@ -207,7 +217,7 @@ client.on('message', function (message) {
             if (mp4.toLocaleLowerCase() == msg.toLocaleLowerCase()) {
                 shouldMessageBeDeleted = true;
 
-                message.channel.send("**["+message.author.username +"] says : \r\n**", { files: ["./video/" + msg + ".mp4"] })
+                message.channel.send("**[" + message.author.username + "] says : \r\n**", { files: ["./video/" + msg + ".mp4"] })
             }
         })
 
@@ -215,7 +225,7 @@ client.on('message', function (message) {
             if (avi.toLocaleLowerCase() == msg.toLocaleLowerCase()) {
                 shouldMessageBeDeleted = true;
 
-                message.channel.send("**["+message.author.username +"] says : \r\n**", { files: ["./video/" + msg + ".avi"] })
+                message.channel.send("**[" + message.author.username + "] says : \r\n**", { files: ["./video/" + msg + ".avi"] })
             }
         })
 
@@ -225,90 +235,95 @@ client.on('message', function (message) {
             if (mp3.toLocaleLowerCase() == msg.toLocaleLowerCase()) {
                 shouldMessageBeDeleted = true;
 
-                message.channel.send("**["+message.author.username +"] says : \r\n**", { files: ["./audio/" + msg + ".mp3"] })
+                message.channel.send("**[" + message.author.username + "] says : \r\n**", { files: ["./audio/" + msg + ".mp3"] })
             }
         })
-        if(shouldMessageBeDeleted){
+        if (shouldMessageBeDeleted) {
             message.delete();
         }
     }
 
-    if (msg.toLowerCase().includes("envie de clubber") 
-    ||  msg.toLowerCase().includes("envie de cluber")
-    ||  msg.toLowerCase().includes("envie de clube")
-    ||  msg.toLowerCase().includes("envie de clubere")
-    ||  msg.toLowerCase().includes("envie de clubé")
-    ||  msg.toLowerCase().includes("envie de clubè")
+    if (msg.toLowerCase().includes("envie de clubber")
+        || msg.toLowerCase().includes("envie de cluber")
+        || msg.toLowerCase().includes("envie de clube")
+        || msg.toLowerCase().includes("envie de clubere")
+        || msg.toLowerCase().includes("envie de clubé")
+        || msg.toLowerCase().includes("envie de clubè")
 
-    ||  msg.toLowerCase().includes("envi de clubber")
-    ||  msg.toLowerCase().includes("envi de cluber")
-    ||  msg.toLowerCase().includes("envi de clube")
-    ||  msg.toLowerCase().includes("envi de clubé")
-    ||  msg.toLowerCase().includes("envi de clubè")
-    ||  msg.toLowerCase().includes("envi de clubere")
+        || msg.toLowerCase().includes("envi de clubber")
+        || msg.toLowerCase().includes("envi de cluber")
+        || msg.toLowerCase().includes("envi de clube")
+        || msg.toLowerCase().includes("envi de clubé")
+        || msg.toLowerCase().includes("envi de clubè")
+        || msg.toLowerCase().includes("envi de clubere")
 
-    ||  msg.toLowerCase().includes("anvi de clubber")
-    ||  msg.toLowerCase().includes("anvi de cluber")
-    ||  msg.toLowerCase().includes("anvi de clube")
-    ||  msg.toLowerCase().includes("anvi de clubé")
-    ||  msg.toLowerCase().includes("anvi de clubè")
-    ||  msg.toLowerCase().includes("anvi de clubere")
-    
-    ||  msg.toLowerCase().includes("envue de clubber") 
-    ||  msg.toLowerCase().includes("envue de cluber")
-    ||  msg.toLowerCase().includes("envue de clube")
-    ||  msg.toLowerCase().includes("envue de clubere")
-    ||  msg.toLowerCase().includes("envue de clubé")
-    ||  msg.toLowerCase().includes("envue de clubè")
+        || msg.toLowerCase().includes("anvi de clubber")
+        || msg.toLowerCase().includes("anvi de cluber")
+        || msg.toLowerCase().includes("anvi de clube")
+        || msg.toLowerCase().includes("anvi de clubé")
+        || msg.toLowerCase().includes("anvi de clubè")
+        || msg.toLowerCase().includes("anvi de clubere")
 
-    ||  msg.toLowerCase().includes("envu de clubber")
-    ||  msg.toLowerCase().includes("envu de cluber")
-    ||  msg.toLowerCase().includes("envu de clube")
-    ||  msg.toLowerCase().includes("envu de clubé")
-    ||  msg.toLowerCase().includes("envu de clubè")
-    ||  msg.toLowerCase().includes("envu de clubere")
+        || msg.toLowerCase().includes("envue de clubber")
+        || msg.toLowerCase().includes("envue de cluber")
+        || msg.toLowerCase().includes("envue de clube")
+        || msg.toLowerCase().includes("envue de clubere")
+        || msg.toLowerCase().includes("envue de clubé")
+        || msg.toLowerCase().includes("envue de clubè")
 
-    ||  msg.toLowerCase().includes("anvu de clubber")
-    ||  msg.toLowerCase().includes("anvu de cluber")
-    ||  msg.toLowerCase().includes("anvu de clube")
-    ||  msg.toLowerCase().includes("anvu de clubé")
-    ||  msg.toLowerCase().includes("anvu de clubè")
-    ||  msg.toLowerCase().includes("anvu de clubere")
+        || msg.toLowerCase().includes("envu de clubber")
+        || msg.toLowerCase().includes("envu de cluber")
+        || msg.toLowerCase().includes("envu de clube")
+        || msg.toLowerCase().includes("envu de clubé")
+        || msg.toLowerCase().includes("envu de clubè")
+        || msg.toLowerCase().includes("envu de clubere")
 
+        || msg.toLowerCase().includes("anvu de clubber")
+        || msg.toLowerCase().includes("anvu de cluber")
+        || msg.toLowerCase().includes("anvu de clube")
+        || msg.toLowerCase().includes("anvu de clubé")
+        || msg.toLowerCase().includes("anvu de clubè")
+        || msg.toLowerCase().includes("anvu de clubere")
 
-    ||  msg.toLowerCase().includes("ca degoute")
-    ||  msg.toLowerCase().includes("ca dégoute")
-    ||  msg.toLowerCase().includes("ça degoute")
-    ||  msg.toLowerCase().includes("ça dégoute")
-    ||  msg.toLowerCase().includes("ca deggoute")
-    ||  msg.toLowerCase().includes("ca deggoutte")
-    ||  msg.toLowerCase().includes("ca degoutte")
-    ||  msg.toLowerCase().includes("ça deggoute")
-    ||  msg.toLowerCase().includes("ça deggoutte")
-    ||  msg.toLowerCase().includes("ça degoutte")
-    
-    ||  msg.toLowerCase().includes("sa degoute")
-    ||  msg.toLowerCase().includes("sa dégoute")
-    ||  msg.toLowerCase().includes("sa deggoute")
-    ||  msg.toLowerCase().includes("sa deggoutte")
-    ||  msg.toLowerCase().includes("sa degoutte")   
-
-    ||  msg.toLowerCase().includes("tu degoute")
-    ||  msg.toLowerCase().includes("tu dégoute")
-    ||  msg.toLowerCase().includes("tu deggoute")
-    ||  msg.toLowerCase().includes("tu deggoutte")
-    ||  msg.toLowerCase().includes("tu degoutte")
-
-    ||  msg.toLowerCase().includes("en vide club et")
-    ||  msg.toLowerCase().includes("en vie, deux cleux bés")
-    ||  msg.toLowerCase().includes("envi de cleuber")
+        || msg.toLowerCase().includes("en vide club et")
+        || msg.toLowerCase().includes("en vie, deux cleux bés")
+        || msg.toLowerCase().includes("envi de cleuber")
 
     ) {
-        message.channel.send('ARRETE DE DIRE CA BORDEL', { files: ["./img/enviedeclubber.jpg"] })
+        message.channel.send(envieDeClubberAnswers[getRandomInt(envieDeClubberAnswers.length)], { files: ["./img/enviedeclubber.jpg"] })
+    }
+    if (msg.toLowerCase().includes("ca degoute")
+        || msg.toLowerCase().includes("ca dégoute")
+        || msg.toLowerCase().includes("ça degoute")
+        || msg.toLowerCase().includes("ça dégoute")
+        || msg.toLowerCase().includes("ca deggoute")
+        || msg.toLowerCase().includes("ca deggoutte")
+        || msg.toLowerCase().includes("ca degoutte")
+        || msg.toLowerCase().includes("ça deggoute")
+        || msg.toLowerCase().includes("ça deggoutte")
+        || msg.toLowerCase().includes("ça degoutte")
+
+        || msg.toLowerCase().includes("sa degoute")
+        || msg.toLowerCase().includes("sa dégoute")
+        || msg.toLowerCase().includes("sa deggoute")
+        || msg.toLowerCase().includes("sa deggoutte")
+        || msg.toLowerCase().includes("sa degoutte")
+
+        || msg.toLowerCase().includes("tu degoute")
+        || msg.toLowerCase().includes("tu dégoute")
+        || msg.toLowerCase().includes("tu deggoute")
+        || msg.toLowerCase().includes("tu deggoutte")
+        || msg.toLowerCase().includes("tu degoutte")) {
+        message.channel.send("C'est lui qui dégoute", { files: ["./img/enviedeclubber.jpg"] })
     }
 
 
 });
+
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
 
 changeNames();
 
