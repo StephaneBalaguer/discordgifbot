@@ -304,7 +304,6 @@ client.on('message', function (message) {
     ||  msg.toLowerCase().includes("envi de cleuber")
 
     ) {
-        message.channel.send()
         message.channel.send('ARRETE DE DIRE CA BORDEL', { files: ["./img/enviedeclubber.jpg"] })
     }
 
