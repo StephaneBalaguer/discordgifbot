@@ -189,8 +189,10 @@ client.on('message', function (message) {
     if (message.author.bot) return;
     var msg = message.content;
     if (msg.toLowerCase() == "!list") {
+        let existing = "Commandes disponibles :\r\n!couillons\r\n\!krok\r\n\!pressXforDoubt\r\n!reptilien\r\n\!sourire\r\n\r\n"
+               
         //img gif
-        let existing = "Gifs disponible : ";
+        existing += "Gifs disponible : ";
         knownGifs.forEach(function (gif) {
             existing += "\r\n" + ":" + gif + ":";
         })
