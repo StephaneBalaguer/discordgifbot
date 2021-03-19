@@ -21,6 +21,7 @@ let knownImagesKrok = [];
 let knownImagesReptilien = [];
 let knownImagesCouillons = [];
 let knownImagesPressX = [];
+let knownImagesGros = [];
 
 
 
@@ -40,6 +41,7 @@ const krokDirectoryPath = path.join(__dirname, 'krok');
 const reptilienDirectoryPath = path.join(__dirname, 'reptilien');
 const couillonsDirectoryPath = path.join(__dirname, 'couillons');
 const pressXDirectoryPath = path.join(__dirname, 'pressx');
+const grosDirectoryPath = path.join(__dirname, 'gros');
 
 function registerList() {
     fs.readdir(imgDirectoryPath, function (err, files) {
@@ -141,6 +143,13 @@ function registerList() {
         })
     });
 
+    fs.readdir(grosDirectoryPath, function (err, files) {
+        knownImagesGros = []
+        files.forEach(function (file) {
+            knownImagesGros.push(file);
+        })
+    });
+
     fs.readdir(krokDirectoryPath, function (err, files) {
         knownImagesKrok = []
         files.forEach(function (file) {
@@ -237,6 +246,16 @@ client.on('message', function (message) {
         if (knownImagesSourire.length != 0) {
             message.channel.send("**[" + message.author.username + "] says : \r\n**", {
                 files: ["./sourire/" + knownImagesSourire[getRandomInt(knownImagesSourire.length)]]
+            })
+            message.delete();
+        }
+    }
+
+
+    if (msg.toLowerCase() == "!gros") {
+        if (knownImagesSourire.length != 0) {
+            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+                files: ["./gros/" + knownImagesGros[getRandomInt(knownImagesGros.length)]]
             })
             message.delete();
         }
