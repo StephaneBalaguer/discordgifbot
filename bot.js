@@ -198,7 +198,7 @@ client.on('message', function (message) {
     if (message.author.bot) return;
     var msg = message.content;
     if (msg.toLowerCase() == "!list") {
-        let existing = "Commandes disponibles :\r\n!couillons\r\n\!krok\r\n\!pressXforDoubt\r\n!reptilien\r\n\!sourire\r\n\r\n"
+        let existing = "Commandes disponibles :\r\n!couillons\r\n\!krok\r\n\!pressXforDoubt\r\n!reptilien\r\n\!sourire\r\n!gros\r\n\r\n"
                
         //img gif
         existing += "Gifs disponible : ";
