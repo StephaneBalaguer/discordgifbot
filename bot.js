@@ -11,6 +11,7 @@ const {
 
 let knownGifs = [];
 let knownImagesJpg = [];
+let knownImagesJpeg = [];
 let knownImagesPng = [];
 let knownVideosAvi = [];
 let knownVideosMp4 = [];
@@ -50,6 +51,7 @@ function registerList() {
         knownGifs = []
         knownImagesJpg = []
         knownImagesPng = [];
+        knownImagesJpeg = [];
 
 
         if (err) {
@@ -74,6 +76,13 @@ function registerList() {
             if (file.split('.')[file.split('.').length - 1] == "png") {
                 file = file.split('.').slice(0, -1).join('.');
                 knownImagesPng.push(file);
+            }
+        });
+
+        files.forEach(function (file) {
+            if (file.split('.')[file.split('.').length - 1] == "jpeg") {
+                file = file.split('.').slice(0, -1).join('.');
+                knownImagesJpeg.push(file);
             }
         });
 
@@ -158,7 +167,7 @@ function registerList() {
             knownImagesKrok.push(file);
         })
     });
-    
+
     fs.readdir(ahegaoDirectoryPath, function (err, files) {
         knownImagesAhegao = []
         files.forEach(function (file) {
@@ -208,7 +217,7 @@ client.on('message', function (message) {
     var msg = message.content;
     if (msg.toLowerCase() == "!list") {
         let existing = "Commandes disponibles :\r\n!couillons\r\n\!krok\r\n\!pressXforDoubt\r\n!reptilien\r\n\!sourire\r\n!gros\r\n!ahegao\r\n\r\n"
-               
+
         //img gif
         existing += "Gifs disponible : ";
         knownGifs.forEach(function (gif) {
@@ -216,23 +225,37 @@ client.on('message', function (message) {
         })
 
         existing += "\r\n\r\nImages disponible : ";
-        knownImagesJpg.forEach(function (jpg) {
-            existing += "\r\n" + ":" + jpg + ":";
+
+        var existingImages = [];
+        knownImagesJpg.forEach(function (i) {
+            existingImages.push(i);
+        })
+        knownImagesJpeg.forEach(function (i) {
+            existingImages.push(i);
+        })
+        knownImagesPng.forEach(function (i) {
+            existingImages.push(i);
+        })
+        existingImages.sort();
+        existingImages.forEach(function (img) {
+            existing += "\r\n" + ":" + img + ":";
         })
 
-        knownImagesPng.forEach(function (png) {
-            existing += "\r\n" + ":" + png + ":";
-        })
         //VIDEO
         existing += "\r\n\r\nVideos disponible : ";
-        knownVideosMp4.forEach(function (mp4) {
+
+        var existingVideos = [];
+        knownVideosMp4.forEach(function (i) {
+            existingVideos.push(i);
+        })
+        knownVideosAvi.forEach(function (i) {
+            existingVideos.push(i);
+        })
+        existingVideos.sort();
+
+        existingVideos.forEach(function (mp4) {
             existing += "\r\n" + ":" + mp4 + ":";
         })
-
-        knownVideosAvi.forEach(function (avi) {
-            existing += "\r\n" + ":" + avi + ":";
-        })
-
 
         // audio
         existing += "\r\n\r\nMp3 disponible : ";
@@ -339,6 +362,16 @@ client.on('message', function (message) {
 
                 message.channel.send("**[" + message.author.username + "] says : \r\n**", {
                     files: ["./img/" + msg + ".jpg"]
+                })
+            }
+        })
+
+        knownImagesJpeg.forEach(function (jpeg) {
+            if (jpeg.toLocaleLowerCase() == msg.toLocaleLowerCase()) {
+                shouldMessageBeDeleted = true;
+
+                message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+                    files: ["./img/" + msg + ".jpeg"]
                 })
             }
         })
