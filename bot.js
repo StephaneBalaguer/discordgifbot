@@ -43,7 +43,7 @@ const reptilienDirectoryPath = path.join(__dirname, 'reptilien');
 const couillonsDirectoryPath = path.join(__dirname, 'couillons');
 const pressXDirectoryPath = path.join(__dirname, 'pressx');
 const grosDirectoryPath = path.join(__dirname, 'gros');
-const ahegaoDirectoryPath = path.join(__dirname, 'gros');
+const ahegaoDirectoryPath = path.join(__dirname, 'ahegao');
 
 function registerList() {
     fs.readdir(imgDirectoryPath, function (err, files) {
