@@ -22,6 +22,7 @@ let knownImagesReptilien = [];
 let knownImagesCouillons = [];
 let knownImagesPressX = [];
 let knownImagesGros = [];
+let knownImagesAhegao = [];
 
 
 
@@ -42,6 +43,7 @@ const reptilienDirectoryPath = path.join(__dirname, 'reptilien');
 const couillonsDirectoryPath = path.join(__dirname, 'couillons');
 const pressXDirectoryPath = path.join(__dirname, 'pressx');
 const grosDirectoryPath = path.join(__dirname, 'gros');
+const ahegaoDirectoryPath = path.join(__dirname, 'gros');
 
 function registerList() {
     fs.readdir(imgDirectoryPath, function (err, files) {
@@ -156,6 +158,13 @@ function registerList() {
             knownImagesKrok.push(file);
         })
     });
+    
+    fs.readdir(ahegaoDirectoryPath, function (err, files) {
+        knownImagesAhegao = []
+        files.forEach(function (file) {
+            knownImagesAhegao.push(file);
+        })
+    });
 }
 
 
@@ -198,7 +207,7 @@ client.on('message', function (message) {
     if (message.author.bot) return;
     var msg = message.content;
     if (msg.toLowerCase() == "!list") {
-        let existing = "Commandes disponibles :\r\n!couillons\r\n\!krok\r\n\!pressXforDoubt\r\n!reptilien\r\n\!sourire\r\n!gros\r\n\r\n"
+        let existing = "Commandes disponibles :\r\n!couillons\r\n\!krok\r\n\!pressXforDoubt\r\n!reptilien\r\n\!sourire\r\n!gros\r\n!ahegao\r\n\r\n"
                
         //img gif
         existing += "Gifs disponible : ";
@@ -298,6 +307,17 @@ client.on('message', function (message) {
             message.delete();
         }
     }
+
+    if (msg.toLowerCase() == "!ahegao") {
+        if (knownImagesAhegao.length != 0) {
+
+            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+                files: ["./ahegao/" + knownImagesAhegao[getRandomInt(knownImagesAhegao.length)]]
+            })
+            message.delete();
+        }
+    }
+
 
 
     if (msg.startsWith(":") && msg.endsWith(":")) {
