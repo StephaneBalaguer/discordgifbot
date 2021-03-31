@@ -24,6 +24,7 @@ let knownImagesCouillons = [];
 let knownImagesPressX = [];
 let knownImagesGros = [];
 let knownImagesAhegao = [];
+let knownImagesEnfant = [];
 
 
 
@@ -45,6 +46,7 @@ const couillonsDirectoryPath = path.join(__dirname, 'couillons');
 const pressXDirectoryPath = path.join(__dirname, 'pressx');
 const grosDirectoryPath = path.join(__dirname, 'gros');
 const ahegaoDirectoryPath = path.join(__dirname, 'ahegao');
+const enfantDirectoryPath = path.join(__dirname, 'enfant');
 
 function registerList() {
     fs.readdir(imgDirectoryPath, function (err, files) {
@@ -170,6 +172,13 @@ function registerList() {
 
     fs.readdir(ahegaoDirectoryPath, function (err, files) {
         knownImagesAhegao = []
+        files.forEach(function (file) {
+            knownImagesAhegao.push(file);
+        })
+    });
+
+    fs.readdir(enfantDirectoryPath, function (err, files) {
+        knownImagesEnfant = []
         files.forEach(function (file) {
             knownImagesAhegao.push(file);
         })
@@ -336,6 +345,16 @@ client.on('message', function (message) {
 
             message.channel.send("**[" + message.author.username + "] says : \r\n**", {
                 files: ["./ahegao/" + knownImagesAhegao[getRandomInt(knownImagesAhegao.length)]]
+            })
+            message.delete();
+        }
+    }
+
+    if (msg.toLowerCase() == "!minimoys") {
+        if (knownImagesEnfant.length != 0) {
+
+            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+                files: ["./ahegao/" + knownImagesEnfant[getRandomInt(knownImagesEnfant.length)]]
             })
             message.delete();
         }
