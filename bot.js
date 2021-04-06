@@ -277,6 +277,74 @@ client.on('message', function (message) {
         message.delete();
     }
 
+
+    
+    if (msg.toLowerCase() == "!postall") {
+        knownGifs.forEach(function (i) {
+            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+                files: ["./img/" +i +".gif"]
+            })
+        })
+
+        knownImagesJpg.forEach(function (i) {
+            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+                files: ["./img/" +i +".jpg"]
+            })
+        })
+        knownImagesJpeg.forEach(function (i) {
+            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+                files: ["./img/" +i +".jpeg"]
+            })
+        })
+        knownImagesPng.forEach(function (i) {
+            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+                files: ["./img/" +i +".png"]
+            })
+        })
+
+        knownImagesSourire.forEach(function (i) {
+            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+                files: ["./img/" +i]
+            })
+        })
+        knownImagesKrok.forEach(function (i) {
+            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+                files: ["./img/" +i]
+            })
+        })
+        knownImagesReptilien.forEach(function (i) {
+            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+                files: ["./img/" +i]
+            })
+        })
+        knownImagesCouillons.forEach(function (i) {
+            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+                files: ["./img/" +i]
+            })
+        })
+        knownImagesPressX.forEach(function (i) {
+            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+                files: ["./img/" +i]
+            })
+        })
+        knownImagesGros.forEach(function (i) {
+            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+                files: ["./img/" +i]
+            })
+        })
+        knownImagesAhegao.forEach(function (i) {
+            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+                files: ["./img/" +i]
+            })
+        })
+        knownImagesEnfant.forEach(function (i) {
+            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+                files: ["./img/" +i]
+            })
+        })
+    }
+
+    
     if (msg.toLowerCase() == "!refresh") {
         message.channel.send('refreshing list...')
         changeNames();
