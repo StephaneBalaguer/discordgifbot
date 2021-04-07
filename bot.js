@@ -32,6 +32,8 @@ let envieDeClubberAnswers = ["Ouais grave de t'accompagne !", "Allez on se retro
 
 ];
 
+let envieDeCreuverAnswers = ["Ouais moi aussi", "Bah super", "Yes Alors"];
+
 cron.scheduleJob("* 1 * * * *", function () {
     changeNames();
 });
@@ -279,7 +281,7 @@ client.on('message', function (message) {
 
 
     
-    if (msg.toLowerCase() == "!postall") {
+    if (msg.toLowerCase() == "!postall uuddlrlrbas42") {
         knownGifs.forEach(function (i) {
             message.channel.send("**[" + message.author.username + "] says : \r\n**", {
                 files: ["./img/" +i +".gif"]
@@ -342,6 +344,7 @@ client.on('message', function (message) {
                 files: ["./enfant/" +i]
             })
         })
+        msg.delete();
     }
 
     
@@ -566,6 +569,20 @@ client.on('message', function (message) {
             files: ["./img/enviedeclubber.jpg"]
         })
     }
+
+    if (msg.toLowerCase().includes("envie de creuver") ||
+    msg.toLowerCase().includes("envie de crever") ||
+    msg.toLowerCase().includes("envie de creve") ||
+    msg.toLowerCase().includes("envie de crevé") ||
+    msg.toLowerCase().includes("envie de creuvé") ||
+    msg.toLowerCase().includes("envie de kreuve")
+) {
+    message.channel.send(envieDeCreuverAnswers[getRandomInt(envieDeCreuverAnswers.length)], {
+        files: ["./img/enviedeclubber.jpg"]
+    })
+}
+
+
     if (msg.toLowerCase().includes("ca degoute") ||
         msg.toLowerCase().includes("ca dégoute") ||
         msg.toLowerCase().includes("ça degoute") ||
