@@ -304,42 +304,42 @@ client.on('message', function (message) {
 
         knownImagesSourire.forEach(function (i) {
             message.channel.send("**[" + message.author.username + "] says : \r\n**", {
-                files: ["./img/" +i]
+                files: ["./sourire/" +i]
             })
         })
         knownImagesKrok.forEach(function (i) {
             message.channel.send("**[" + message.author.username + "] says : \r\n**", {
-                files: ["./img/" +i]
+                files: ["./krok/" +i]
             })
         })
         knownImagesReptilien.forEach(function (i) {
             message.channel.send("**[" + message.author.username + "] says : \r\n**", {
-                files: ["./img/" +i]
+                files: ["./reptilien/" +i]
             })
         })
         knownImagesCouillons.forEach(function (i) {
             message.channel.send("**[" + message.author.username + "] says : \r\n**", {
-                files: ["./img/" +i]
+                files: ["./couillons/" +i]
             })
         })
         knownImagesPressX.forEach(function (i) {
             message.channel.send("**[" + message.author.username + "] says : \r\n**", {
-                files: ["./img/" +i]
+                files: ["./pressx/" +i]
             })
         })
         knownImagesGros.forEach(function (i) {
             message.channel.send("**[" + message.author.username + "] says : \r\n**", {
-                files: ["./img/" +i]
+                files: ["./gros/" +i]
             })
         })
         knownImagesAhegao.forEach(function (i) {
             message.channel.send("**[" + message.author.username + "] says : \r\n**", {
-                files: ["./img/" +i]
+                files: ["./ahegao/" +i]
             })
         })
         knownImagesEnfant.forEach(function (i) {
             message.channel.send("**[" + message.author.username + "] says : \r\n**", {
-                files: ["./img/" +i]
+                files: ["./enfant/" +i]
             })
         })
     }
