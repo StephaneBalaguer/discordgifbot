@@ -344,7 +344,7 @@ client.on('message', function (message) {
                 files: ["./enfant/" +i]
             })
         })
-        msg.delete();
+        message.delete();
     }
 
     
