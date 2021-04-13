@@ -28,9 +28,10 @@ let knownImagesEnfant = [];
 
 
 
-let envieDeClubberAnswers = ["Ouais grave de t'accompagne !", "Allez on se retrouve a l'interieur !", "Ouais gros !", "Vas y chaud !", "T'as vraiment envie d'aller clubber avec un mec comme ca ?!", "LET'S GO"
+let envieDeClubberAnswers = ["Ouais, grave je t'accompagne !", "Allez on se retrouve a l'interieur !", "Ouais gros !", "Vas y chaud !", "T'as vraiment envie d'aller clubber avec un mec comme ca ?!", "LET'S GO", "Let's go les gars !"];
 
-];
+let envieDeClubberAnswersZ = ["Vas y j'y suis deja, tu me rejoins ?", "Vas y chuis al frere !", "Ou yéah !", "Vas y !", "Allons sur la piste de dance !", "Oui.", "Ok."];
+
 
 let envieDeCreuverAnswers = ["Ouais moi aussi", "Bah super", "Yes Alors"];
 
@@ -281,66 +282,66 @@ client.on('message', function (message) {
 
 
     
-    if (msg.toLowerCase() == "!postall uuddlrlrbas42") {
+    if (msg.toLowerCase() == "!postalluuddlrlrbas42") {
         knownGifs.forEach(function (i) {
-            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+            message.channel.send("**"+i+"**", {
                 files: ["./img/" +i +".gif"]
             })
         })
 
         knownImagesJpg.forEach(function (i) {
-            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+            message.channel.send("**"+i+"**", {
                 files: ["./img/" +i +".jpg"]
             })
         })
         knownImagesJpeg.forEach(function (i) {
-            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+            message.channel.send("**"+i+"**", {
                 files: ["./img/" +i +".jpeg"]
             })
         })
         knownImagesPng.forEach(function (i) {
-            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+            message.channel.send("**"+i+"**", {
                 files: ["./img/" +i +".png"]
             })
         })
 
         knownImagesSourire.forEach(function (i) {
-            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+            message.channel.send("**Sourire**", {
                 files: ["./sourire/" +i]
             })
         })
         knownImagesKrok.forEach(function (i) {
-            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+            message.channel.send("**krok**", {
                 files: ["./krok/" +i]
             })
         })
         knownImagesReptilien.forEach(function (i) {
-            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+            message.channel.send("**reptilien**", {
                 files: ["./reptilien/" +i]
             })
         })
         knownImagesCouillons.forEach(function (i) {
-            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+            message.channel.send("**couillons**", {
                 files: ["./couillons/" +i]
             })
         })
         knownImagesPressX.forEach(function (i) {
-            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+            message.channel.send("**pressxfordoubt**", {
                 files: ["./pressx/" +i]
             })
         })
         knownImagesGros.forEach(function (i) {
-            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+            message.channel.send("**gros**", {
                 files: ["./gros/" +i]
             })
         })
         knownImagesAhegao.forEach(function (i) {
-            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+            message.channel.send("**ahegao**", {
                 files: ["./ahegao/" +i]
             })
         })
         knownImagesEnfant.forEach(function (i) {
-            message.channel.send("**[" + message.author.username + "] says : \r\n**", {
+            message.channel.send("**minimoys**", {
                 files: ["./enfant/" +i]
             })
         })
@@ -565,9 +566,15 @@ client.on('message', function (message) {
         msg.toLowerCase().includes("envi de cleuber")
 
     ) {
-        message.channel.send(envieDeClubberAnswers[getRandomInt(envieDeClubberAnswers.length)], {
-            files: ["./img/enviedeclubber.jpg"]
-        })
+        if(message.author.id == "159638700316164096"){
+            message.channel.send(envieDeClubberAnswersZ[getRandomInt(envieDeClubberAnswersZ.length)], {
+                files: ["./img/zennfclub.jpg"]
+            })
+        }else{
+            message.channel.send(envieDeClubberAnswers[getRandomInt(envieDeClubberAnswers.length)], {
+                files: ["./img/enviedeclubber.jpg"]
+            })    
+        }
     }
 
     if (msg.toLowerCase().includes("envie de creuver") ||
