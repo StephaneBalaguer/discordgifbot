@@ -426,7 +426,7 @@ client.on('message', function (message) {
         if (knownImagesEnfant.length != 0) {
 
             message.channel.send("**[" + message.author.username + "] says : \r\n**", {
-                files: ["./ahegao/" + knownImagesEnfant[getRandomInt(knownImagesEnfant.length)]]
+                files: ["./enfant/" + knownImagesEnfant[getRandomInt(knownImagesEnfant.length)]]
             })
             message.delete();
         }
@@ -443,7 +443,7 @@ client.on('message', function (message) {
             if (gif.toLocaleLowerCase() == msg.toLocaleLowerCase()) {
                 shouldMessageBeDeleted = true;
                 message.channel.send("**[" + message.author.username + "] says : \r\n**", {
-                    files: ["./img/" + msg + ".gif"]
+                    files: ["./img/" + gif + ".gif"]
                 })
             }
         })
@@ -452,7 +452,7 @@ client.on('message', function (message) {
                 shouldMessageBeDeleted = true;
 
                 message.channel.send("**[" + message.author.username + "] says : \r\n**", {
-                    files: ["./img/" + msg + ".jpg"]
+                    files: ["./img/" + jpg + ".jpg"]
                 })
             }
         })
@@ -462,7 +462,7 @@ client.on('message', function (message) {
                 shouldMessageBeDeleted = true;
 
                 message.channel.send("**[" + message.author.username + "] says : \r\n**", {
-                    files: ["./img/" + msg + ".jpeg"]
+                    files: ["./img/" + jpeg + ".jpeg"]
                 })
             }
         })
@@ -471,7 +471,7 @@ client.on('message', function (message) {
                 shouldMessageBeDeleted = true;
 
                 message.channel.send("**[" + message.author.username + "] says : \r\n**", {
-                    files: ["./img/" + msg + ".png"]
+                    files: ["./img/" + png + ".png"]
                 })
             }
         })
@@ -482,7 +482,7 @@ client.on('message', function (message) {
                 shouldMessageBeDeleted = true;
 
                 message.channel.send("**[" + message.author.username + "] says : \r\n**", {
-                    files: ["./video/" + msg + ".mp4"]
+                    files: ["./video/" + mp4 + ".mp4"]
                 })
             }
         })
@@ -492,7 +492,7 @@ client.on('message', function (message) {
                 shouldMessageBeDeleted = true;
 
                 message.channel.send("**[" + message.author.username + "] says : \r\n**", {
-                    files: ["./video/" + msg + ".avi"]
+                    files: ["./video/" + avi + ".avi"]
                 })
             }
         })
@@ -504,7 +504,7 @@ client.on('message', function (message) {
                 shouldMessageBeDeleted = true;
 
                 message.channel.send("**[" + message.author.username + "] says : \r\n**", {
-                    files: ["./audio/" + msg + ".mp3"]
+                    files: ["./audio/" + mp3 + ".mp3"]
                 })
             }
         })
