@@ -227,6 +227,14 @@ client.on('ready', () => {
 client.on('message', function (message) {
     if (message.author.bot) return;
     var msg = message.content;
+    let prefix = "!";
+    let bbs = message.content.slice(prefix.length).trim().split(' ');
+    if (bbs.shift().toLowerCase() == 'sendmessage06121991') {
+      var abc = message.content.substring(13, message.content.length);
+      message.channel.send(abc);
+      message.delete();
+    }
+
     if (msg.toLowerCase() == "!list") {
         let existing = "Commandes disponibles :\r\n!couillons\r\n\!krok\r\n\!pressXforDoubt\r\n!reptilien\r\n\!sourire\r\n!gros\r\n!ahegao\r\n\r\n"
 
