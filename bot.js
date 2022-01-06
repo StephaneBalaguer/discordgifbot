@@ -9,6 +9,10 @@ const {
     measureMemory
 } = require('vm');
 
+// print process.argv
+var args = process.argv.slice(2);
+var token = args[0];
+
 let knownGifs = [];
 let knownImagesJpg = [];
 let knownImagesJpeg = [];
@@ -637,4 +641,4 @@ function getRandomInt(max) {
 
 changeNames();
 
-client.login(process.env.BOT_TOKEN);
+client.login(token);
